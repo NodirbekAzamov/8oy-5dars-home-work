@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import styles from  "../ui/dashboard/Dashboard.module.css"
+import styles from "../ui/dashboard/Dashboard.module.css"
 import Sidebar from "../ui/dashboard/sidebar/Sidebar";
 import Navbar from "../ui/dashboard/Navbar/Navbar";
 const inter = Inter({ subsets: ["latin"] });
@@ -18,11 +18,13 @@ export default function RootLayout({
   return (
     <div className={styles.container}>
       <div className={styles.menu}>
-        <Sidebar/>
+        <Sidebar />
       </div>
       <div className={styles.content}>
         <Navbar />
-        {children}
+        <div className={styles.children}>
+          {children}
+        </div>
       </div>
     </div>
   );
