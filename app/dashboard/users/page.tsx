@@ -6,10 +6,11 @@ import img from "@/public/user.jpg"
 import Search from '@/app/ui/dashboard/search/Search'
 import Pagination from '@/app/ui/dashboard/pagination/Pagination'
 import { fetchUsers } from '@/app/lib/data'
-export default async function Users({ searchParams }: { searchParams: { query: string } }) {
+import { IUserPromise } from '@/app/types/users'
+export default async function Users({ searchParams }: { searchParams: { query: string, page: string } }) {
   const q = searchParams?.query || "";
-  const users = await fetchUsers(q)
-  console.log(users, "user");
+  const page = Number(searchParams?.page) || 1
+  const results:IUserPromise | undefined = await fetchUsers(q, page)
 
   return (
     <div className={styles.container}>
@@ -30,7 +31,7 @@ export default async function Users({ searchParams }: { searchParams: { query: s
         </thead>
         <tbody>
           {
-            users?.map((user) => (
+            results?.users?.map((user) => (
               <tr key={user._id}>
                 <td>
                   <div className={styles.user}>
@@ -55,7 +56,7 @@ export default async function Users({ searchParams }: { searchParams: { query: s
           }
         </tbody>
       </table>
-      <Pagination />
+      <Pagination count={results?.count}/>
     </div>
   )
 }
