@@ -18,6 +18,7 @@ export interface IUserPromise {
 
 
 interface IProducts {
+    _id: string,
     title: string,
     desc: string,
     price: number,

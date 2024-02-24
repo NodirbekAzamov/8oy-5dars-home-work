@@ -40,7 +40,7 @@ export default async function Users({ searchParams }: { searchParams: { query: s
                   </div>
                 </td>
                 <td>{user.email}</td>
-                <td>{user?.createdAt?.toString()?.slice(4, 16)}</td>
+                <td>{user?.createdAt?.toString()?.slice(4, 16) || "24.02.2024"}</td>
                 <td>{user.isAdmin ? "Admin" : "Client"}</td>
                 <td>{user.isActive ? "Active" : "Passive"}</td>
                 <td>

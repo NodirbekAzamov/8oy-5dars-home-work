@@ -35,8 +35,7 @@ export default async function Products({ searchParams }: { searchParams: { query
         <tbody>
           {
             results?.products?.map(product => (
-
-              <tr>
+              <tr key={product._id}>
                 <td>
                   <div className={styles.product}>
                     <Image src={ User_img} alt='user'  width={40} height={40} className={styles.productImage} />
@@ -45,7 +44,7 @@ export default async function Products({ searchParams }: { searchParams: { query
                 </td>
                 <td>{product?.desc}</td>
                 <td>{product?.price}</td>
-                <td>{product?.createdAt || "24.02.2024"}</td>
+                <td>{product?.createdAt?.toString()?.slice(4, 16) || "24.02.2024" }</td>
                 <td>{product?.stock}</td>
                 <td>
                   <div className={styles.buttons}>
